@@ -9,7 +9,7 @@ function crearEncuesta() {
     alert("Debe ingresar al menos 8 preguntas");
     numPreguntas = parseInt(prompt("Reingrese el número de preguntas que tendrá la encuesta?"));
   }
-
+//prueba de PF 12345664
   let numAlternativas = parseInt(
     prompt("¿Cuántas alternativas tendrán las preguntas?"));
 
