@@ -9,7 +9,7 @@ function crearEncuesta() {
     alert("Debe ingresar al menos 8 preguntas");
     numPreguntas = parseInt(prompt("Reingrese el número de preguntas que tendrá la encuesta?"));
   }
-//prueba de Pf
+
   let numAlternativas = parseInt(
     prompt("¿Cuántas alternativas tendrán las preguntas?"));
 
@@ -39,7 +39,6 @@ encuesta = [];
 // Función para mostrar encuesta y guardar respuestas del usuario
 function guardarRespuestas(encuesta) { 
   const respuestas = [];
-
   for (let i = 0; i < encuesta.preguntas.length; i++) {
     const pregunta = encuesta.preguntas[i];
     let mensaje = pregunta.pregunta + "\n\n";
@@ -49,7 +48,7 @@ function guardarRespuestas(encuesta) {
     }
 
     let respuestaUsuario
-    // Solicita respuesta y valida que la respuesta del usuario sea una opción válida
+    // Solicita respuesta  y valida que sea una alternativa válida
     do {
       respuestaUsuario = parseInt(prompt(mensaje));
       console.log("respuesta ingresada: " + respuestaUsuario);
