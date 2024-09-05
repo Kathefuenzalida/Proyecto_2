@@ -28,7 +28,8 @@ class SistemaEncuestas {
     alert("Debe ingresar al menos 8 preguntas");
     numPreguntas = parseInt(prompt("Reingrese el número de preguntas que tendrá la encuesta?"));
   }
-    const numOpciones = parseInt(prompt("Ingrese el número de ALTERNATIVAS por pregunta:"));
+    
+  let numOpciones = parseInt(prompt("Ingrese el número de ALTERNATIVAS por pregunta:"));
   while (isNaN(numOpciones)) {
     alert("Debe ingresar un número válido para las alternativas");
     numOpciones = parseInt(prompt("Reingrese el número de ALTERNATIVAS?"));
@@ -39,9 +40,7 @@ class SistemaEncuestas {
       const pregunta = new Pregunta(preguntaTexto);
 
       for (let j = 0; j < numOpciones; j++) {
-        const alternativaTexto = prompt(
-          `Ingrese el texto de la alternativa ${j + 1} de la pregunta ${i + 1}:`
-        );
+        const alternativaTexto = prompt(`Ingrese el texto de la alternativa ${j + 1} de la pregunta ${i + 1}:`);
         pregunta.agregarAlternativa(alternativaTexto);
       }
       encuesta.agregarPregunta(pregunta);
@@ -53,22 +52,27 @@ class SistemaEncuestas {
     const arrayrespuestas = [];
     for (let i = 0; i < encuesta.preguntas.length; i++) {
       const pregunta = encuesta.preguntas[i];
-      console.log(pregunta)
-      let respuestas = " ";
+      //console.log(pregunta)
+      let respuestas = " "; 
       for (let j = 0; j < pregunta.alternativas.length; j++) {
         respuestas = respuestas + "\n" + pregunta.alternativas[j];
-        console.log(respuestas);
+        //console.log(respuestas);
       }
-      const respuesta = prompt(`Ingrese su respuesta para la pregunta ${i + 1}: ${pregunta.texto} \n\n ${i + 1} -  ${respuestas}`);
+      let respuesta = prompt(`Ingrese su respuesta para la pregunta ${i + 1}: ${pregunta.texto} \n\n ${respuestas}`);
+      //console.log("respuesta ingresada: " + respuesta);
+      while (isNaN(respuesta) || respuesta < 1 || respuesta > pregunta.alternativas.length){
+        alert("Debe ingresar un número válido para la respuesta");
+        respuesta = parseInt(prompt("Reingrese respuesta?"));
+      }
       arrayrespuestas.push(respuesta);
     }
-    return arrayrespuestas;
+    return arrayrespuestas; 
   }
 mostrarResultados(encuesta, respuestas){
   console.log(`Resultados de la encuesta "${encuesta.titulo}":`);
   for (let i = 0; i < encuesta.preguntas.length; i++) {
     console.log(`Pregunta ${i + 1}: ${encuesta.preguntas[i].texto}`);
-    console.log(`Respuestas:`, respuestas[i]);
+    console.log(`Respuesta:`, respuestas[i]);
   }
 }
 ejecutar(){

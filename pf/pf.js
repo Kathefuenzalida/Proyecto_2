@@ -10,9 +10,7 @@ function crearEncuesta() {
     numPreguntas = parseInt(prompt("Reingrese el número de preguntas que tendrá la encuesta?"));
   }
 
-  let numAlternativas = parseInt(
-    prompt("¿Cuántas alternativas tendrán las preguntas?"));
-
+  let numAlternativas = parseInt(prompt("¿Cuántas alternativas tendrán las preguntas?"));
   while (isNaN(numAlternativas)) {
     alert("Debe ingresar un número válido para las alternativas");
     numAlternativas = parseInt(prompt("Reingrese el número de ALTERNATIVAS?"));
