@@ -23,8 +23,13 @@ class Pregunta {
 // En esta clase solicito al usuario el título, número de preguntas y alternativas.
 class SistemaEncuestas {
   crearEncuesta() {
-    const nombreEncuesta = prompt("Ingrese el título de la encuesta:");
-    // Solicito núm de preguntas y reviso que dato sea válido. 
+    let nombreEncuesta = prompt("Ingrese el título de la encuesta:");
+    while (!nombreEncuesta || nombreEncuesta.trim() === "") {
+      alert("El título no puede estar vacío.");
+      nombreEncuesta = prompt("Ingrese el título de la encuesta:");
+    }
+    nombreEncuesta = nombreEncuesta.trim();
+     // Solicito núm de preguntas y reviso que dato sea válido. 
     let numPreguntas = parseInt(prompt("Ingrese el número de preguntas:"));
   while (isNaN(numPreguntas) || numPreguntas < 8) {
     alert("Debe ingresar al menos 8 preguntas");
@@ -40,12 +45,22 @@ class SistemaEncuestas {
     const encuesta = new Encuesta(nombreEncuesta);
     // Ciclo para recibir texto de preguntas en i y alternativas en j.
     for (let i = 0; i < numPreguntas; i++) {
-      const preguntaTexto = prompt(`Ingrese el texto de la pregunta ${i + 1}:`);
+      let preguntaTexto = prompt(`Ingrese el texto de la pregunta ${i + 1}:`);
+while (!preguntaTexto || preguntaTexto.trim() === "") {
+  alert("El texto de la pregunta no puede estar vacío.");
+  preguntaTexto = prompt(`Ingrese el texto de la pregunta ${i + 1}:`);
+}
+preguntaTexto = preguntaTexto.trim();
       // Creo la instancia de la clase Pregunta. 
       const pregunta = new Pregunta(preguntaTexto);
 
       for (let j = 0; j < numOpciones; j++) {
-        const alternativaTexto = prompt(`Ingrese el texto de la alternativa ${j + 1} de la pregunta ${i + 1}:`);
+        let alternativaTexto = prompt(`Ingrese el texto de la alternativa ${j + 1} de la pregunta ${i + 1}:`);
+while (!alternativaTexto || alternativaTexto.trim() === "") {
+  alert("El texto de la alternativa no puede estar vacío.");
+  alternativaTexto = prompt(`Ingrese el texto de la alternativa ${j + 1} de la pregunta ${i + 1}:`);
+}
+alternativaTexto = alternativaTexto.trim();
         // Llamo al método para guardar altervativas.
         pregunta.agregarAlternativa(alternativaTexto);
       }
