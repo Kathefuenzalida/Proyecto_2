@@ -1,7 +1,7 @@
 // Se crea la función que permitete ingresar nombre de la encuesta, número de preguntas y alternativas.
 function crearEncuesta() {
   // La variable nombre encuesta guardará el nombre de la encuesta que ingrese el usuario por pantalla.
-  const nombreEncuesta = prompt("Ingrese el nombre de la encuesta");
+  let nombreEncuesta = prompt("Ingrese el nombre de la encuesta");
   while (!nombreEncuesta || nombreEncuesta.trim() === "") {
     alert("Debe ingresar un nombre válido para la encuesta.");
     nombreEncuesta = prompt("Ingrese el nombre de la encuesta");
@@ -84,7 +84,7 @@ function mostrarResultados(encuesta, respuestas) {
   let resultado = "Resultados de la encuesta \n\n " + encuesta.nombre + ": \n";
   // Ciclo para recorrer y mostrar cada pregunta y su resultado.
   for (let i = 0; i < encuesta.preguntas.length; i++) {
-    resultado += encuesta.preguntas[i].pregunta + "\n" + "- Tu respuesta: " + respuestas[i] + "\n";
+    resultado += `Pregunta ${i + 1}: ${encuesta.preguntas[i].pregunta}\n- Tu respuesta: ${respuestas[i]}\n`;
   }
 // Muestro los resultados por pantalla. 
   alert(resultado);
