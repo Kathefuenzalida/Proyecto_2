@@ -25,20 +25,31 @@ function crearEncuesta() {
   // Array para almacenar las preguntas y alternativas de la encuesta.
 encuesta = [];
 //Ciclo para recorrer el número de preguntas y alternativas.
-  for (let i = 0; i < numPreguntas; i++) {
-    // La variable preguntaTexto guardará texto de preguntas a través del push, y se irá sobreescribiendo.
-    const preguntaTexto = prompt("Escribe el texto para la pregunta " + (i + 1) + ":");
-    // Array para almacenar texto de alternativas de la pregunta i.
-    const opciones = [];
-    for (let j = 0; j < numAlternativas; j++) {
-      const opcionTexto = prompt("Escribe el texto para la opción " + (j + 1),"de la pregunta" + (i + 1) + ": ");
-      opciones.push(opcionTexto);
-    }
-    encuesta.push({
-      pregunta: preguntaTexto,
-      opciones: opciones,
-    });
+for (let i = 0; i < numPreguntas; i++) {
+  let preguntaTexto = prompt("Escribe el texto para la pregunta " + (i + 1) + ":");
+  // Validar que la pregunta no esté vacía
+  while (!preguntaTexto || preguntaTexto.trim() === "") {
+    alert("El texto de la pregunta no puede estar vacío.");
+    preguntaTexto = prompt("Escribe el texto para la pregunta " + (i + 1) + ":");
   }
+
+  const opciones = [];
+  for (let j = 0; j < numAlternativas; j++) {
+    let opcionTexto = prompt("Escribe el texto para la opción " + (j + 1) + " de la pregunta " + (i + 1) + ":");
+    // Validar que la opción no esté vacía
+    while (!opcionTexto || opcionTexto.trim() === "") {
+      alert("El texto de la alternativa no puede estar vacío.");
+      opcionTexto = prompt("Escribe el texto para la opción " + (j + 1) + " de la pregunta " + (i + 1) + ":");
+    }
+
+    opciones.push(opcionTexto.trim());
+  }
+
+  encuesta.push({
+    pregunta: preguntaTexto.trim(),
+    opciones: opciones,
+  });
+}
 //comentario test
   return {
     nombre: nombreEncuesta,
